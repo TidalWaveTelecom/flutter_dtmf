@@ -54,10 +54,11 @@ class DtmfPlugin: FlutterPlugin, MethodCallHandler {
     }
   }
 
+  val streamType = AudioManager.STREAM_DTMF
+  val volume = 80
+  val toneGenerator = ToneGenerator(streamType, volume)
+
   private fun playTone(digits: String, durationMs: Int) {
-    val streamType = AudioManager.STREAM_DTMF
-    val volume = 80
-    val toneGenerator = ToneGenerator(streamType, volume)
     Thread(object : Runnable {
       override fun run() {
         for (i in digits.indices)
